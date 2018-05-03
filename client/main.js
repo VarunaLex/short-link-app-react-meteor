@@ -1,8 +1,10 @@
 import { Meteor } from "meteor/meteor";
+import { Tracker } from "meteor/tracker";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
+import browserHistory from "./../imports/ui/history";
 import { Login } from "./../imports/ui/components/Login";
 import { Signup } from "./../imports/ui/components/Signup";
 import { Linker } from "./../imports/ui/components/Linker";
@@ -18,6 +20,14 @@ const routes = (
     </Switch>
   </Router>
 );
+
+window.browserHistory = browserHistory;
+
+Tracker.autorun(() => {
+  const isAthenicated = !!Meteor.userId();
+  console.log('isAthenicated', isAthenicated);
+  
+})
 
 Meteor.startup(() => {
   ReactDOM.render(routes, document.getElementById("app"));
