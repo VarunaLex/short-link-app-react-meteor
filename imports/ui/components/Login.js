@@ -8,6 +8,7 @@ export class Login extends Component {
         this.state = {
             error: ''
         }
+        
     }
 
     onSubmit(e) {

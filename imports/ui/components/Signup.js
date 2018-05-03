@@ -8,6 +8,7 @@ export class Signup extends Component {
     this.state = {
       error: ''
     }
+    
   }
 
   onSubmit(e){
