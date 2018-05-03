@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { Accounts } from "meteor/accounts-base";
+import { Link } from "react-router-dom";
 
 export class Signup extends Component {
   constructor(props){
@@ -34,6 +35,7 @@ export class Signup extends Component {
           <input type="password" ref="password" placeholder=" * * * * * " />
           <input type="submit" value="Create Account" />
         </form>
+        <Link to="/">Alrady have an account?</Link>
       </div>)
   }
 }
