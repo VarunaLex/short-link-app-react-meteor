@@ -27,9 +27,18 @@ const onEnterPrivatePage = () => {
 const routes = (
   <Router history={history}>
     <Switch>
-      <Route exact path='/' component={Login} />
-      <Route path='/linker' component={Linker} />
-      <Route path='/signup' component={Signup} />
+      <Route exact path='/' render={() => {
+        onEnterPublicPage();
+        return <Login />
+      }} />
+      <Route path='/linker' render={() => {
+        onEnterPrivatePage();
+        return <Linker />
+      }} />
+      <Route path='/signup' render={() => {
+        onEnterPublicPage()
+        return <Signup />
+      }} />
         <Route path="*" component={NotFound} />
     </Switch>
   </Router>
