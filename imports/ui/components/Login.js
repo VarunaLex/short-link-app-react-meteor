@@ -19,11 +19,11 @@ export class Login extends Component {
 
         Meteor.loginWithPassword({email}, password, (err) => {
             console.log("Login callback ", err);
-            
-        })
-
-        this.setState({
-            error: 'SOmethig going wrong'
+            if(err){
+                this.setState({error: err.reason})
+            }else{
+                this.setState({error: null})
+            }
         })
     }
 

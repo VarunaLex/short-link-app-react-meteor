@@ -19,11 +19,15 @@ export class Signup extends Component {
 
     Accounts.createUser({email: email, password: password}, (err) => {
       console.log("Callback signup : ", err);
+      if(password.length < 8) {
+        return this.setState({error: 'Password must be more than 7 charaters long'})
+      }
+      if(err){
+        this.setState({error: err.reason})
+      }else{
+        this.setState({error: null})
+      }
     });
-
-    this.setState({
-      error: 'SOmethig going wrong'
-    })
   }
 
   render() {

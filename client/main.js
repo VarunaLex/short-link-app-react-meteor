@@ -12,33 +12,26 @@ import { Signup } from "./../imports/ui/components/Signup";
 import { Linker } from "./../imports/ui/components/Linker";
 import { NotFound } from "./../imports/ui/components/NotFound";
 
-const unauthenticatedPages = ['/', 'signup'];
+const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/linker'];
 const onEnterPublicPage = () => {
   if(Meteor.userId()){
-    history.replace('/linker');
+    //history.push('/linker');
+    <Redirect to='/linker' />
   }
 }
 const onEnterPrivatePage = () => {
   if (!Meteor.userId()) {
-    history.replace('/');
+    //history.push('/');
+    <Redirect to='/' />
   }
 }
 const routes = (
   <Router history={history}>
     <Switch>
-      <Route exact path='/' render={() => {
-        onEnterPublicPage();
-        return <Login />
-      }} />
-      <Route path='/linker' render={() => {
-        onEnterPrivatePage();
-        return <Linker />
-      }} />
-      <Route path='/signup' render={() => {
-        onEnterPublicPage()
-        return <Signup />
-      }} />
+      <Route exact path='/' componentWillMount={onEnterPublicPage} component={Login} />
+      <Route path='/linker' componentWillMount={onEnterPrivatePage} component={Linker} />
+      <Route path='/signup' componentWillMount={onEnterPublicPage} component={Signup} />
         <Route path="*" component={NotFound} />
     </Switch>
   </Router>
@@ -50,7 +43,7 @@ Tracker.autorun(() => {
   const isAuthenticated = !!Meteor.userId();
   console.log('isAuthenticated', isAuthenticated);
 
-  const pathname = history.location.pathname;
+  let pathname = history.location.pathname;
   console.log(pathname);
   console.log(authenticatedPages.includes(pathname));
   if (isAuthenticated && unauthenticatedPages.includes(pathname)) {
