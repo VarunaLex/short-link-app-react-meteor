@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
-import "./../imports/api/user"
+import "./../imports/api/user";
+import "./../imports/api/links";
+import "./../imports/startup/simple-schema-configuration.js"
 
 Meteor.startup(() => {
   // code to run on server at startup
-  
 });
