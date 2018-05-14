@@ -1,15 +1,13 @@
-import React, {Component} from "react";
+import React from "react";
+import { Links } from "./../../api/links";
 import LinksList from "./LinksList";
 import PrivateHeader from "./PrivateHeader";
 import AddLink from "./AddLink";
 
-export class Linker extends Component {
-
-    render() {
-        return (<div>
-            <PrivateHeader title="Links Home" />
-            <LinksList />
-            <AddLink />
-        </div>)
-    }
+export const Linker = () => {
+    return (<div>
+        <PrivateHeader title="Links Home" />
+        <LinksList />
+        <AddLink />
+    </div>)
 }

@@ -1,8 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import React, { Component } from "react";
 
-import { Links } from "./../../api/links";
-
 export default class AddLink extends Component {
   onSubmit(e) {
     e.preventDefault();
