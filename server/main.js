@@ -13,6 +13,7 @@ Meteor.startup(() => {
       res.statusCode = 302;
       res.setHeader('Location', link.url);
       res.end();
+      Meteor.call('links.tackVisits', _id);
     } else {
       next();
     }
